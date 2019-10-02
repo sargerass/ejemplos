@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="card" style=";">
+            <div class="card-header">
+                Venta de productos de prductos
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="">
+                    Elija un producto</label>
+                </div>
+                <div class="col-md-8">
+                    <select name="" class="form-control" v-model="produccCurrent">
+                        <option :value="product"  v-for="product in arrayProducts" >
+                            {{product.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <h3 v-if="produccCurrent">
+                Deseas comprar {{produccCurrent.name}}
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="numebr" v-model="countProduct" class="form-comtrol">
+                    </div>
+                    <div class="col-md-6" v-show="produccCurrent.unitType =='granel' ">
+                        <select v-model="typeCurrent"  class="form-control">
+                            <option :value="unit" v-for="unit in arrayUnits">
+                                {{unit.name}}
+                            </option>
+                        </select>
+                    </div>                    
+                </div>
+                <button class="btn btn-success" @click="calculate()">
+                    Calcular
+                </button>
+            </h3>
+            <hr>
+            <div v-if="priceFInal">
+                Precio: {{priceFInal}}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
